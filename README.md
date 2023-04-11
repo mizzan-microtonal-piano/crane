@@ -1,2 +1,2 @@
 # crane
-Controller board for the Mizzan Microtonal Piano
+Arduino library for `crane` board
