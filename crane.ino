@@ -67,7 +67,7 @@ REQUIRED UPDATES
 
 // Font
 // ------------------------------------------------------------
-#include <C:\Users\OJO\Downloads\temp/UnifrakturMaguntia_Regular44pt7b.h>
+#include <C:\Users\OJO\Documents\GitHub\crane\crane/UnifrakturMaguntia_Regular44pt7b.h>
 
 //fonts from Adafruit_SSD1306 examined for the Logo (currently are not used)
 //#include <Fonts/FreeMonoBoldOblique12pt7b.h>
@@ -343,21 +343,18 @@ void setup() {
   delay(1000);
   ***/
 
-  /***
+  
   // display the "booting..." logo
   // -----------------------------
-
   displayStart(" mizzan\n", 17, 130,    //title
                "booting...\n",100, 200, //subtitle
                1000);                   //duration
 
+  // =====================================
   // RUN A LOOP UNTIL YOU HEAR FROM PYTHON
   // =====================================
   communication.ping = false;
-  
-  
-  /////FOR NOW, FORGET ABOUT PYTHON SERVER
-  communication.booted = true;
+  //// communication.booted = true; //true that if you want to test it without the python SERVER
   while (!communication.booted) {
     if(Serial.available() > 0) {
       communication = readSerial(communication=communication);
@@ -383,13 +380,13 @@ void setup() {
   }
 
   communication.ping = false;
-  ***/
+  
 
   
 
   // Apply initial process screen until the instrument is loaded
   // -----------------------------------------------------------
-  //// processScreen(3000);   //for now, deactivate it!
+  processScreen(1000);   //the waiting time reduced from 3000 because crane v. 1.0 is too slow
   
   // load the menucommunication
   // --------------------------
@@ -403,7 +400,6 @@ void setup() {
 
 }
 
-
 // ------------------------------------------------------------
 // LOOP()
 // ============================================================
@@ -411,11 +407,12 @@ void loop() {
 
   TIME = millis();
   
-  // TEMPORARY
+
+  // TEMPORARILY ACTIVATE THIS IF YOU WANT TO TEST THE BOARD WITHOUT PYTHON
   // EVERY COMMAND MUST BE CONFIRMED BY PYTHON. FOR NOW, DISABLE THIS FEATURE FOR TESTING
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  COMMAND = "";
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  //// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  //COMMAND = "";
+  //// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   // display error messages, but if a sever error has occured, show the 20 seconds recovery time
   // -------------------------------------------------------------------------------------------
@@ -668,41 +665,48 @@ void buttonHandler(){
 
   //example of a single button pressed (in this case when button 0 is pressed, the serial prints the rise/fall state of the button)
   if(buttonFlag[0] == 1 ){
+    
     if(buttonEdge[0] == 0 ){
-      Serial.println("FALL on 0");
+      if (DEBUG) Serial.println("FALL on 0");
     }else{
-      Serial.println("button 0: dClick");
+      if (DEBUG) Serial.println("button 0: dClick");
       dClick = true;
     }
     buttonHandle[0] = 1; //clear the flag
   }
 
   else if(buttonFlag[1] == 1 ){
-    if(buttonEdge[1] == 0 ){
-      Serial.println("FALL on 1");
-    }else{
-      Serial.println("RISE on 1");
+    if (DEBUG) {
+      if (buttonEdge[1] == 0 ){
+        Serial.println("FALL on 1");
+      } else {
+        Serial.println("RISE on 1");
+      }
     }
     buttonHandle[1] = 1; //clear the flag
   }
 
   else if(buttonFlag[2] == 1 ){
-    if(buttonEdge[2] == 0 ){
-      Serial.println("FALL on 2");
-      
-    }else{
-      Serial.println("RISE on 2");
-      rotation = rotation - 1;
-      Serial.println(rotation);
+
+    rotation = rotation - 1;
+
+    if (DEBUG) {
+      if(buttonEdge[2] == 0 ){
+        Serial.println("FALL on 2");
+      }else{
+        Serial.println("RISE on 2");
+        Serial.println(rotation);
+      }
     }
+
     buttonHandle[2] = 1; //clear the flag
   }
 
   else if(buttonFlag[3] == 1 ){
     if(buttonEdge[3] == 0 ){
-      Serial.println("FALL on 3");
+      if (DEBUG) Serial.println("FALL on 3");
     }else{
-      Serial.println("RISE on 3");
+      if (DEBUG) Serial.println("RISE on 3");
       rotation = rotation + 1;
       Serial.println(rotation);
     }
@@ -711,18 +715,18 @@ void buttonHandler(){
 
   else if(buttonFlag[4] == 1 ){
     if(buttonEdge[4] == 0 ){
-      Serial.println("FALL on 4");
+      if (DEBUG) Serial.println("FALL on 4");
     }else{
-      Serial.println("RISE on 4");
+      if (DEBUG) Serial.println("RISE on 4");
     }
     buttonHandle[4] = 1; //clear the flag
   }
   
   else if(buttonFlag[5] == 1 ){
     if(buttonEdge[5] == 0 ){
-      Serial.println("FALL on 5");
+      if (DEBUG) Serial.println("FALL on 5");
     }else{
-      Serial.println("button 5: sClick");
+      if (DEBUG) Serial.println("button 5: sClick");
       sClick = true;
     }
     buttonHandle[5] = 1; //clear the flag
@@ -730,9 +734,9 @@ void buttonHandler(){
 
   else if(buttonFlag[6] == 1 ){
     if(buttonEdge[6] == 0 ){
-      Serial.println("FALL on 6");
+      if (DEBUG) Serial.println("FALL on 6");
     }else{
-      Serial.println("RISE on 6");
+      if (DEBUG) Serial.println("RISE on 6");
       tuningButton = HIGH;
     }
     buttonHandle[6] = 1; //clear the flag
@@ -740,9 +744,9 @@ void buttonHandler(){
 
   else if(buttonFlag[7] == 1 ){
     if(buttonEdge[7] == 0 ){
-      Serial.println("FALL on 7");
+      if (DEBUG) Serial.println("FALL on 7");
     }else{
-      Serial.println("RISE on 7");
+      if (DEBUG) Serial.println("RISE on 7");
       reverbButton = HIGH;
     }
     buttonHandle[7] = 1; //clear the flag
@@ -751,9 +755,9 @@ void buttonHandler(){
   // THE NAME IS INCORRECT
   else if(buttonFlag[8] == 1 ){
     if(buttonEdge[8] == 0 ){
-      Serial.println("FALL on 8");
+      if (DEBUG) Serial.println("FALL on 8");
     }else{
-      Serial.println("RISE on 8");
+      if (DEBUG) Serial.println("RISE on 8");
       instrumentButton = HIGH;
     }
     buttonHandle[8] = 1; //clear the flag
@@ -763,9 +767,9 @@ void buttonHandler(){
   // ----------------------------------------
   else if(buttonFlag[9] == 1 ){
     if(buttonEdge[9] == 0 ){
-      Serial.println("FALL on 9");
+      if (DEBUG) Serial.println("FALL on 9");
     }else{
-      Serial.println("RISE on 9");
+      if (DEBUG) Serial.println("RISE on 9");
       // only activate this option if the piano is not already recording
       if (!recordStatus) {
         recordButton = HIGH;
@@ -803,9 +807,9 @@ void buttonHandler(){
   // ----------------------------------------
   else if(buttonFlag[10] == 1 ){
     if(buttonEdge[10] == 0 ){
-      Serial.println("FALL on 10");
+      if (DEBUG) Serial.println("FALL on 10");
     } else {
-      Serial.println("RISE on 10");
+      if (DEBUG) Serial.println("RISE on 10");
       // PAUSE BUTTON
       if (recordStatus) {
         recordButton = LOW;
@@ -846,9 +850,9 @@ void buttonHandler(){
 
   else if(buttonFlag[11] == 1 ){
     if(buttonEdge[11] == 0 ){
-      Serial.println("FALL on 11");
+      if (DEBUG) Serial.println("FALL on 11");
     }else{
-      Serial.println("RISE on 11");
+      if (DEBUG) Serial.println("RISE on 11");
       settingsButton = HIGH;
       delay(50);
     }

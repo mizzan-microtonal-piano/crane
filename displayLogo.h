@@ -84,12 +84,11 @@ void processScreen(float wait=3000,
     //  SCREEN.fillRoundRect(5, 110, i, 20, 0, style4Colors[Len-j]); //0x0062
     //} 
     SCREEN.fillRoundRect(X1, 110, i, 20, 0, style4Colors[1]); //0x0062
-    
 
     //there is a lot of killed time in between waiting s, that's taken by the monitor!
     // therefore, assuming linear waiting time, this procedure can be slowed down
-    int waitingTime = round(wait/240) - 10 ;
-    delay(waitingTime); 
+    //// int waitingTime = round(wait/240) - 10 ; //deactivated for crane board due to unknown waiting time
+    //// delay(waitingTime); 
 
   }
 }
