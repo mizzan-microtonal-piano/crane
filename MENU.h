@@ -105,23 +105,28 @@ String menuPages[] = {"Instrument",
 
 String menuInstruments[] = {"",
                             "Grand Piano",
+                            "John Cage",
+                            "Celesta",
+                            "Dulcitone",
+                            "Lute-Harpsichord",
+                            "Electric Guitar"
+                            /*
                             "Lutheal Piano",
                             "Fortepiano",
                             "Upright Lite",
-                            "John Cage",
+                            
                             "Muted Grand Piano",
-                            "Lute-Harpsichord",
+                            
                             "Rollig Orphica",
                             "Rhodes Mark I (line)",
                             "Rhodes Mark I (amp)",
                             "Wurlitzer",
-                            "Celesta",
-                            "Dulcitone",
+                            
                             "Prepared Pianet",
                             "Harp",
                             "Philicorda",
-                            "Electric Guitar",
-                            /*"Accoustic Guitar",
+                            
+                            "Accoustic Guitar",
                             
                             "Harpsichord II",
                             "Harpsichord III",
@@ -134,23 +139,27 @@ int instrumentsNum = (sizeof(menuInstruments)/ sizeof(menuInstruments[0])) - 1;
 
 String menuInstrumentsBrief[] = {"",
                                  "grand piano",
+                                 "j. cage",
+                                 "celesta",
+                                 "dulcitone",
+                                 "lute-harpsi.",
+                                 "e. guitar"
+                                 /*
                                  "lutheal",
                                  "fortepiano",
                                  "up. piano",
-                                 "j. cage",
                                  "muted grand",
-                                 "lute-harpsi.",
+                                 
                                  "orphica",
                                  "mark I line",
                                  "mark I amp",
                                  "wurlitzer",
-                                 "celesta",
-                                 "dulcitone",
+                                 
                                  "pianet",
                                  "harp",
                                  "philicorda"
                                  "lutheal",
-                                 "e. guitar"
+                                 */
                                 };
 
 String menuRecord[] = {"",
