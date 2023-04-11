@@ -108,9 +108,9 @@ String menuInstruments[] = {"",
                             "John Cage",
                             "Celesta",
                             "Dulcitone",
-                            "Lute-Harpsichord",
-                            "Electric Guitar"
+                            "Lute-Harpsichord"
                             /*
+                            "Electric Guitar"
                             "Lutheal Piano",
                             "Fortepiano",
                             "Upright Lite",
@@ -142,9 +142,9 @@ String menuInstrumentsBrief[] = {"",
                                  "j. cage",
                                  "celesta",
                                  "dulcitone",
-                                 "lute-harpsi.",
-                                 "e. guitar"
+                                 "lute-harpsi."
                                  /*
+                                 "e. guitar",
                                  "lutheal",
                                  "fortepiano",
                                  "up. piano",
