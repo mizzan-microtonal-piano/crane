@@ -1,0 +1,10 @@
+(sym_lib_table
+  (lib (name "Waveshare_LCD_Module")(type "KiCad")(uri "${KIPRJMOD}/Library/symbols/Waveshare_LCD_Module.kicad_sym")(options "")(descr ""))
+  (lib (name "MF-MSMF050-2")(type "Legacy")(uri "${KIPRJMOD}/Library/symbols/MF-MSMF050-2.lib")(options "")(descr ""))
+  (lib (name "MH2029-300Y")(type "Legacy")(uri "${KIPRJMOD}/Library/symbols/MH2029-300Y.lib")(options "")(descr ""))
+  (lib (name "CD1206-S01575")(type "KiCad")(uri "${KIPRJMOD}/Library/symbols/CD1206-S01575.kicad_sym")(options "")(descr ""))
+  (lib (name "LMV358IDGKR")(type "KiCad")(uri "${KIPRJMOD}/Library/symbols/LMV358IDGKR.kicad_sym")(options "")(descr ""))
+  (lib (name "CSTCE16M0V53-R0")(type "KiCad")(uri "${KIPRJMOD}/Library/symbols/CSTCE16M0V53-R0.kicad_sym")(options "")(descr ""))
+  (lib (name "PMV48XP")(type "KiCad")(uri "${KIPRJMOD}/Library/symbols/PMV48XP.kicad_sym")(options "")(descr ""))
+  (lib (name "USB-B-S-X-X-TH")(type "Legacy")(uri "${KIPRJMOD}/Library/symbols/USB-B-S-X-X-TH.lib")(options "")(descr ""))
+)
