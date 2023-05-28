@@ -5,6 +5,7 @@
   (paper "A4")
 
   (title_block
+    (title "Crane V2.0 Rev A")
     (date "mar. 31 mars 2015")
   )
 
