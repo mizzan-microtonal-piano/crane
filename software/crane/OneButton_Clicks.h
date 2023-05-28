@@ -68,7 +68,7 @@ void singleclick(){                                 // what happens when the but
  //digitalWrite(12,HIGH);                            // light the red LED
  //delay(250);                                       // wait one second
  //digitalWrite(12,LOW);                              // turn off the gren led
- Serial.println("sClick!");
+ SerialUSB.println("sClick!");
  sClick = true;
 }
 
@@ -77,7 +77,7 @@ void doubleclick() {                                // what happens when button 
  //delay(250);                                       // wait one second
  //digitalWrite(11,LOW);                              // turn off green LED
 
- Serial.println("dClick");
+ SerialUSB.println("dClick");
  dClick = true;
 }
 
@@ -95,7 +95,7 @@ void longclick(){                                   // what happens when buton i
 
 // This function will be called once, when the button1 is pressed for a long time.
 void longPressStart1() {
-  Serial.println(">FN:");
+  SerialUSB.println(">FN:");
 } // longPressStart1
 
 
@@ -107,7 +107,7 @@ void longPress1() {
 
 // This function will be called once, when the button1 is released after beeing pressed for a long time.
 void longPressStop1() {
-  Serial.println(">ND:");
+  SerialUSB.println(">ND:");
 } // longPressStop1
 
 
@@ -135,7 +135,7 @@ int singleButton(int PIN, bool DEBUG=false) {
   
     int median = QuickMedian<int>::GetMedian(ARRAY, 451); //array, its length
     if (median>=350) {
-      if (DEBUG) Serial.println(ARRAY[25]);
+      if (DEBUG) SerialUSB.println(ARRAY[25]);
       dClick = true;
     }
   }
@@ -158,25 +158,25 @@ int fiveButton(int PIN, bool DEBUG=false) {
     int median = QuickMedian<int>::GetMedian(ARRAY, 451); //array, its length
     
     if (median<=13) {
-      if (DEBUG) Serial.println("LEFT0");
+      if (DEBUG) SerialUSB.println("LEFT0");
       left0 = HIGH;
     }
     else if (median>=14 && median<=30){
-      if (DEBUG) Serial.println("UP0");
+      if (DEBUG) SerialUSB.println("UP0");
       up0 = HIGH;
       result = -1;
     }
     else if (median>=45 && median<=75){
-      if (DEBUG) Serial.println("DOWN0");
+      if (DEBUG) SerialUSB.println("DOWN0");
       down0 = HIGH;
       result = 1;
     }
     else if (median>=95 && median<=120){
-      if (DEBUG) Serial.println("RIGHT0");
+      if (DEBUG) SerialUSB.println("RIGHT0");
       right0 = HIGH;
     }
     else if (median>=200 && median<=300) {
-      if (DEBUG) Serial.println("sClick!");
+      if (DEBUG) SerialUSB.println("sClick!");
       sClick = true;
     } 
   }
@@ -192,15 +192,15 @@ void threeButton1(int PIN, bool DEBUG=false) {
     }
     int median = QuickMedian<int>::GetMedian(ARRAY, 451); //array, its length
     if (median<=10) {
-    if (DEBUG) Serial.println("instrumentButton");
+    if (DEBUG) SerialUSB.println("instrumentButton");
       instrumentButton = HIGH;
     }
     else if (median>=95 && median<=120){
-      if (DEBUG) Serial.println("reverbButton");
+      if (DEBUG) SerialUSB.println("reverbButton");
       reverbButton = HIGH;
     }
     else if (median>=200 && median<=300) {
-      if (DEBUG) Serial.println("tuningButton");
+      if (DEBUG) SerialUSB.println("tuningButton");
       tuningButton = HIGH;
     }
   }
@@ -219,7 +219,7 @@ void threeButton2(int PIN, bool DEBUG=false) {
     // RECORD BUTTON
     // -------------
     if (median<=10) {
-      if (DEBUG) Serial.println("recordButton");
+      if (DEBUG) SerialUSB.println("recordButton");
 
       // only activate this option if the piano is not already recording
       if (!recordStatus) {
@@ -243,7 +243,7 @@ void threeButton2(int PIN, bool DEBUG=false) {
         COMMAND = String(">RC:") + recordStatus + String("\r\n");
         //Serial.print(">RC:");
         //Serial.print(recordStatus);
-        Serial.println(COMMAND);
+        SerialUSB.println(COMMAND);
         //Serial.print("\n");
         
         commandSent = true;
@@ -255,7 +255,7 @@ void threeButton2(int PIN, bool DEBUG=false) {
     // PLAY / PAUSE BUTTON
     // -------------------
     else if (median>=95 && median<=120){
-      if (DEBUG) Serial.println("play/pause Button");
+      if (DEBUG) SerialUSB.println("play/pause Button");
       
 
       // PAUSE BUTTON
@@ -279,7 +279,7 @@ void threeButton2(int PIN, bool DEBUG=false) {
 
         // CODE FOR 'PAUSING' File IS '>RC:0'
         COMMAND = String(">RC:") + recordStatus + String("\r\n");
-        Serial.println(COMMAND);
+        SerialUSB.println(COMMAND);
         commandSent = true;
         commandConfirmed = false;
         
@@ -296,7 +296,7 @@ void threeButton2(int PIN, bool DEBUG=false) {
       
     }
     else if (median>=200 && median<=300) {
-      if (DEBUG) Serial.println("settingsButton");
+      if (DEBUG) SerialUSB.println("settingsButton");
       settingsButton = HIGH;
       delay(250);
     }
