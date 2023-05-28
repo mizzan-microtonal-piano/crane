@@ -1,0 +1,27 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#(c) SnapEDA 2016 (snapeda.com)
+#This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA) with Design Exception 1.0
+#
+# 292304-1
+#
+DEF 292304-1 J 0 40 N Y 1 L N
+F0 "J" -200 301 50 H V L BNN
+F1 "292304-1" -200 -301 50 H V L BNN
+F2 "TE_292304-1" 0 0 50 H I L BNN
+F3 "" 0 0 50 H I L BNN
+F4 "Connector" 0 0 50 H I L BNN "Product_Type"
+F5 "292304-1" 0 0 50 H I L BNN "Comment"
+F6 "4" 0 0 50 H I L BNN "Number_of_Positions"
+F7 "2.5 mm[.098 in]" 0 0 50 H I L BNN "Centerline_Pitch"
+F8 "Compliant" 0 0 50 H I L BNN "EU_RoHS_Compliance"
+DRAW
+S -200 -200 200 300 0 0 10 f
+X VBUS 1 -400 200 200 R 40 40 0 0 W 
+X D- 2 -400 100 200 R 40 40 0 0 B 
+X D+ 3 -400 0 200 R 40 40 0 0 B 
+X GND 4 -400 -100 200 R 40 40 0 0 W 
+ENDDRAW
+ENDDEF
+#
+# End Library
