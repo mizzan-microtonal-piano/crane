@@ -67,7 +67,7 @@ REQUIRED UPDATES
 
 // Font
 // ------------------------------------------------------------
-#include <C:\Users\OJO\Documents\GitHub\crane\crane/UnifrakturMaguntia_Regular44pt7b.h>
+#include "UnifrakturMaguntia_Regular44pt7b.h"
 
 //fonts from Adafruit_SSD1306 examined for the Logo (currently are not used)
 //#include <Fonts/FreeMonoBoldOblique12pt7b.h>
@@ -81,13 +81,13 @@ REQUIRED UPDATES
 
 // Adafruit TFT screen
 // ------------------------------------------------------------
-#define TFT_DC 7
-#define TFT_CS 10
-#define TFT_BL 9
-#define TFT_MOSI 11
-#define TFT_CLK 13
-#define TFT_RST 8
-#define TFT_MISO 12
+#define TFT_DC PC_4
+#define TFT_CS PA_4
+#define TFT_BL PB_0
+#define TFT_MOSI PA_7
+#define TFT_CLK PA_5
+#define TFT_RST PC_5
+#define TFT_MISO PA_6
 
 SPISettings mySetting(16000000, MSBFIRST , SPI_MODE0);
 
@@ -266,8 +266,8 @@ char buff[100];
 // ============================================================
 void setup() {
 
-  Serial.begin(115200); //default was 11
-  Serial.println("Mizzan Microtonal Piano");
+  SerialUSB.begin(115200); //default was 11
+  SerialUSB.println("Mizzan Microtonal Piano");
   
   /* WHAT THE FUCK AM I DOING HER?
   //set clkPin,dePin,swPin as INPUT
@@ -356,7 +356,7 @@ void setup() {
   communication.ping = false;
   //// communication.booted = true; //true that if you want to test it without the python SERVER
   while (!communication.booted) {
-    if(Serial.available() > 0) {
+    if(SerialUSB.available() > 0) {
       communication = readSerial(communication=communication);
     }  
     else {
@@ -486,7 +486,7 @@ void loop() {
     tuningButton = LOW;
   }
   else if (recordButton == HIGH) {
-    if (DEBUG) Serial.println("RECORD");
+    if (DEBUG) SerialUSB.println("RECORD");
     menu.page = 3;
     menu.item = 0;
     memorizeMenuPage= 2;
@@ -500,7 +500,7 @@ void loop() {
   }
   else if (playButton == HIGH) {
     if (recordStatus) {
-      if (DEBUG) Serial.println("PAUSE");
+      if (DEBUG) SerialUSB.println("PAUSE");
       refreshDisplay = true;
       menu.page = 3;
       menu.item = 0;
@@ -510,7 +510,7 @@ void loop() {
       dClick = true;
     }
     else {
-      if (DEBUG) Serial.println("SONGS");
+      if (DEBUG) SerialUSB.println("SONGS");
       sClick = true;
       menu.page = 5;
       menu.item = 0;
@@ -576,7 +576,7 @@ void loop() {
 
   // Serial Communication
   // ============================================================
-  if(Serial.available() > 0) {
+  if(SerialUSB.available() > 0) {
     communication = readSerial(communication=communication);
     
     if (waitScreen & waitingTime > 0) {
@@ -604,7 +604,7 @@ void loop() {
   // Listen for command confirmations
   // --------------------------------
   if (communication.ping) {
-    Serial.println("PING");
+    SerialUSB.println("PING");
 
     // clear the command history
     commandSent        = false;
@@ -623,7 +623,7 @@ void loop() {
 
     // repost the command every 1000ms
     else if ((TIME - commandWaitingTime) >= 1000 & sizeof(COMMAND) > 1) {
-      Serial.println(COMMAND);
+      SerialUSB.println(COMMAND);
       //Serial.print("\n");
       //Serial.print(millis());
       //Serial.print("   ");
@@ -667,9 +667,9 @@ void buttonHandler(){
   if(buttonFlag[0] == 1 ){
     
     if(buttonEdge[0] == 0 ){
-      if (DEBUG) Serial.println("FALL on 0");
+      if (DEBUG) SerialUSB.println("FALL on 0");
     }else{
-      if (DEBUG) Serial.println("button 0: dClick");
+      if (DEBUG) SerialUSB.println("button 0: dClick");
       dClick = true;
     }
     buttonHandle[0] = 1; //clear the flag
@@ -678,9 +678,9 @@ void buttonHandler(){
   else if(buttonFlag[1] == 1 ){
     if (DEBUG) {
       if (buttonEdge[1] == 0 ){
-        Serial.println("FALL on 1");
+        SerialUSB.println("FALL on 1");
       } else {
-        Serial.println("RISE on 1");
+        SerialUSB.println("RISE on 1");
       }
     }
     buttonHandle[1] = 1; //clear the flag
@@ -692,10 +692,10 @@ void buttonHandler(){
 
     if (DEBUG) {
       if(buttonEdge[2] == 0 ){
-        Serial.println("FALL on 2");
+        SerialUSB.println("FALL on 2");
       }else{
-        Serial.println("RISE on 2");
-        Serial.println(rotation);
+        SerialUSB.println("RISE on 2");
+        SerialUSB.println(rotation);
       }
     }
 
@@ -708,25 +708,25 @@ void buttonHandler(){
     }else{
       if (DEBUG) Serial.println("RISE on 3");
       rotation = rotation + 1;
-      Serial.println(rotation);
+      SerialUSB.println(rotation);
     }
     buttonHandle[3] = 1; //clear the flag
   }
 
   else if(buttonFlag[4] == 1 ){
     if(buttonEdge[4] == 0 ){
-      if (DEBUG) Serial.println("FALL on 4");
+      if (DEBUG) SerialUSB.println("FALL on 4");
     }else{
-      if (DEBUG) Serial.println("RISE on 4");
+      if (DEBUG) SerialUSB.println("RISE on 4");
     }
     buttonHandle[4] = 1; //clear the flag
   }
   
   else if(buttonFlag[5] == 1 ){
     if(buttonEdge[5] == 0 ){
-      if (DEBUG) Serial.println("FALL on 5");
+      if (DEBUG) SerialUSB.println("FALL on 5");
     }else{
-      if (DEBUG) Serial.println("button 5: sClick");
+      if (DEBUG) SerialUSB.println("button 5: sClick");
       sClick = true;
     }
     buttonHandle[5] = 1; //clear the flag
@@ -734,9 +734,9 @@ void buttonHandler(){
 
   else if(buttonFlag[6] == 1 ){
     if(buttonEdge[6] == 0 ){
-      if (DEBUG) Serial.println("FALL on 6");
+      if (DEBUG) SerialUSB.println("FALL on 6");
     }else{
-      if (DEBUG) Serial.println("RISE on 6");
+      if (DEBUG) SerialUSB.println("RISE on 6");
       tuningButton = HIGH;
     }
     buttonHandle[6] = 1; //clear the flag
@@ -744,9 +744,9 @@ void buttonHandler(){
 
   else if(buttonFlag[7] == 1 ){
     if(buttonEdge[7] == 0 ){
-      if (DEBUG) Serial.println("FALL on 7");
+      if (DEBUG) SerialUSB.println("FALL on 7");
     }else{
-      if (DEBUG) Serial.println("RISE on 7");
+      if (DEBUG) SerialUSB.println("RISE on 7");
       reverbButton = HIGH;
     }
     buttonHandle[7] = 1; //clear the flag
@@ -755,9 +755,9 @@ void buttonHandler(){
   // THE NAME IS INCORRECT
   else if(buttonFlag[8] == 1 ){
     if(buttonEdge[8] == 0 ){
-      if (DEBUG) Serial.println("FALL on 8");
+      if (DEBUG) SerialUSB.println("FALL on 8");
     }else{
-      if (DEBUG) Serial.println("RISE on 8");
+      if (DEBUG) SerialUSB.println("RISE on 8");
       instrumentButton = HIGH;
     }
     buttonHandle[8] = 1; //clear the flag
@@ -767,9 +767,9 @@ void buttonHandler(){
   // ----------------------------------------
   else if(buttonFlag[9] == 1 ){
     if(buttonEdge[9] == 0 ){
-      if (DEBUG) Serial.println("FALL on 9");
+      if (DEBUG) SerialUSB.println("FALL on 9");
     }else{
-      if (DEBUG) Serial.println("RISE on 9");
+      if (DEBUG) SerialUSB.println("RISE on 9");
       // only activate this option if the piano is not already recording
       if (!recordStatus) {
         recordButton = HIGH;
@@ -790,10 +790,10 @@ void buttonHandler(){
 
         // CODE FOR 'RECORDING' File IS '>RC:'
         COMMAND = String(">RC:") + recordStatus + String("\r\n");
-        //Serial.print(">RC:");
-        //Serial.print(recordStatus);
-        Serial.println(COMMAND);
-        //Serial.print("\n");
+        //SerialUSB.print(">RC:");
+        //SerialUSB.print(recordStatus);
+        SerialUSB.println(COMMAND);
+        //SerialUSB.print("\n");
         
         commandSent = true;
         commandConfirmed = false;
@@ -807,9 +807,9 @@ void buttonHandler(){
   // ----------------------------------------
   else if(buttonFlag[10] == 1 ){
     if(buttonEdge[10] == 0 ){
-      if (DEBUG) Serial.println("FALL on 10");
+      if (DEBUG) SerialUSB.println("FALL on 10");
     } else {
-      if (DEBUG) Serial.println("RISE on 10");
+      if (DEBUG) SerialUSB.println("RISE on 10");
       // PAUSE BUTTON
       if (recordStatus) {
         recordButton = LOW;
@@ -831,13 +831,13 @@ void buttonHandler(){
 
         // CODE FOR 'PAUSING' File IS '>RC:0'
         COMMAND = String(">RC:") + recordStatus + String("\r\n");
-        Serial.println(COMMAND);
+        SerialUSB.println(COMMAND);
         commandSent = true;
         commandConfirmed = false;
         
-        //Serial.print(">RC:");
-        //Serial.println(recordStatus);
-        //Serial.print("\n");
+        //SerialUSB.print(">RC:");
+        //SerialUSB.println(recordStatus);
+        //SerialUSB.print("\n");
         delay(10);
       }
       // OTHERWISE ACTIVATE THE PLAY BUTTON, IF NOTHING IS BEING PLAYED NOW
@@ -850,9 +850,9 @@ void buttonHandler(){
 
   else if(buttonFlag[11] == 1 ){
     if(buttonEdge[11] == 0 ){
-      if (DEBUG) Serial.println("FALL on 11");
+      if (DEBUG) SerialUSB.println("FALL on 11");
     }else{
-      if (DEBUG) Serial.println("RISE on 11");
+      if (DEBUG) SerialUSB.println("RISE on 11");
       settingsButton = HIGH;
       delay(50);
     }

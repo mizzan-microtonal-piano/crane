@@ -6,13 +6,13 @@
 
 
 
-#define CRANE_KEY_C0  2
-#define CRANE_KEY_C1  14
-#define CRANE_KEY_C2  15
-#define CRANE_KEY_R0  6
-#define CRANE_KEY_R1  5
-#define CRANE_KEY_R2  4
-#define CRANE_KEY_R3  3
+#define CRANE_KEY_C0  PC_6
+#define CRANE_KEY_C1  PC_7
+#define CRANE_KEY_C2  PC_8
+#define CRANE_KEY_R0  PB_12
+#define CRANE_KEY_R1  PB_13
+#define CRANE_KEY_R2  PB_14
+#define CRANE_KEY_R3  PB_15
 
 void buttonClearFlag();
 void buttonFlagAutoClear(int clearTimeMs);

@@ -18,7 +18,7 @@ struct COMMUNICATION readSerial(struct COMMUNICATION communication,
 
 
   while (!stop) {
-    incomingByte = Serial.read();
+    incomingByte = SerialUSB.read();
 
     // stop iteration limit
     if (emptyRead > maxEmptyRead) {
@@ -28,10 +28,10 @@ struct COMMUNICATION readSerial(struct COMMUNICATION communication,
     // '*' Ping Detection: clean the serial, reply to the ping, stop the loop
     // ----------------------------------------------------------------------
     if (incomingByte == 42) {
-      while(Serial.available() > 0) {
-        incomingByte = Serial.read();
+      while(SerialUSB.available() > 0) {
+        incomingByte = SerialUSB.read();
       }
-      Serial.println("*");
+      SerialUSB.println("*");
       delay(wait);
       incomingByte = 0;
       ping = true;
@@ -67,19 +67,19 @@ struct COMMUNICATION readSerial(struct COMMUNICATION communication,
     msgHeader = String(ptr);
 
     if (DEBUG) {
-      Serial.print("HEADER: ");
-      Serial.println(msgHeader);
+      SerialUSB.print("HEADER: ");
+      SerialUSB.println(msgHeader);
     }
     
     if (msgHeader == "@LOG") {
       LOG = true;
-      Serial.println("LOGED");
+      SerialUSB.println("LOGED");
     } else if (msgHeader == "@BOO") {
       communication.booted = true;
-      Serial.println("BOOTED");
+      SerialUSB.println("BOOTED");
     } else if (msgHeader == "@BYE") {
       communication.shutdown = true;
-      Serial.println("SHUTDOWN");
+      SerialUSB.println("SHUTDOWN");
     } else if (msgHeader == "@MSF") {
       MSF[99];
     } else if (msgHeader == "@REV") {
