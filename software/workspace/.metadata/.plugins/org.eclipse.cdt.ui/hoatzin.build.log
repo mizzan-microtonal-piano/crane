@@ -1,0 +1,40 @@
+14:56:21 **** Incremental Build of configuration Debug for project hoatzin ****
+make -j8 all 
+arm-none-eabi-gcc "../Fatar/fatar_port.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I"C:/Users/hr193/OneDrive/Documents/Projects/hoatzin/software/workspace/hoatzin/Pedals/inc" -I"C:/Users/hr193/OneDrive/Documents/Projects/hoatzin/software/workspace/hoatzin/Pedals/src" -I"C:/Users/hr193/OneDrive/Documents/Projects/hoatzin/software/workspace/hoatzin/Middlewares/ST/STM32_USB_Device_Library/Class/MIDI/Inc" -I"C:/Users/hr193/OneDrive/Documents/Projects/hoatzin/software/workspace/hoatzin/Middlewares/ST/STM32_USB_Device_Library/Class/MIDI/Src" -I"C:/Users/hr193/OneDrive/Documents/Projects/hoatzin/software/workspace/hoatzin/MIDI/inc" -I"C:/Users/hr193/OneDrive/Documents/Projects/hoatzin/software/workspace/hoatzin/MIDI/src" -I"C:/Users/hr193/OneDrive/Documents/Projects/hoatzin/software/workspace/hoatzin/Fatar" -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/AUDIO/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Fatar/fatar_port.d" -MT"Fatar/fatar_port.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Fatar/fatar_port.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I"C:/Users/hr193/OneDrive/Documents/Projects/hoatzin/software/workspace/hoatzin/Pedals/inc" -I"C:/Users/hr193/OneDrive/Documents/Projects/hoatzin/software/workspace/hoatzin/Pedals/src" -I"C:/Users/hr193/OneDrive/Documents/Projects/hoatzin/software/workspace/hoatzin/Middlewares/ST/STM32_USB_Device_Library/Class/MIDI/Inc" -I"C:/Users/hr193/OneDrive/Documents/Projects/hoatzin/software/workspace/hoatzin/Middlewares/ST/STM32_USB_Device_Library/Class/MIDI/Src" -I"C:/Users/hr193/OneDrive/Documents/Projects/hoatzin/software/workspace/hoatzin/MIDI/inc" -I"C:/Users/hr193/OneDrive/Documents/Projects/hoatzin/software/workspace/hoatzin/MIDI/src" -I"C:/Users/hr193/OneDrive/Documents/Projects/hoatzin/software/workspace/hoatzin/Fatar" -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/AUDIO/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Fatar/fatar_port.c:31:12: warning: 'sCurve' defined but not used [-Wunused-variable]
+   31 | static int sCurve[127] =  {1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 8, 8, 9, 9, 10, 11, 13, 14, 17, 19, 21, 24, 26, 28, 31, 33, 35, 37, 40, 42, 44, 47, 49, 51, 54, 56, 58, 60, 63, 65, 67, 70, 72, 74, 77, 79, 81, 83, 86, 88, 90, 93, 95, 97, 100, 102, 104, 106, 109, 111, 113, 115, 116, 117, 118, 118, 119, 119, 120, 120, 121, 121, 121, 121, 121, 122, 122, 122, 122, 122, 123, 123, 123, 123, 123, 124, 124, 124, 124, 124, 125, 125, 125, 125, 125, 126, 126, 126, 126, 126, 127, 127, 127
+      |            ^~~~~~
+../Fatar/fatar_port.c:27:12: warning: 'logCurve' defined but not used [-Wunused-variable]
+   27 | static int logCurve[127] = {1, 3, 5, 6, 8, 9, 11, 12, 14, 15, 17, 18, 20, 21, 23, 24, 26, 27, 29, 30, 32, 33, 35, 36, 38, 39, 41, 42, 44, 45, 47, 40, 50, 51, 53, 54, 56, 57, 59, 60, 62, 63, 65, 66, 68, 69, 71, 72, 74, 75, 77, 78, 80, 81, 83, 84, 86, 87, 89, 90, 91, 92, 93, 94, 95, 95, 96, 97, 97, 98, 99, 99, 100, 100, 101, 101, 102, 102, 103, 103, 104, 104, 105, 105, 106, 106, 107, 107, 108, 108, 109, 109, 110, 110, 111, 111, 112, 112, 113, 113, 114, 114, 115, 115, 116, 116, 117, 117, 118, 118, 119, 119, 120, 120, 121, 121, 122, 122, 123, 123, 124, 124, 125, 125, 126, 126, 127
+      |            ^~~~~~~~
+../Fatar/fatar_port.c:23:12: warning: 'expCurve' defined but not used [-Wunused-variable]
+   23 | static int expCurve[127] = {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22 , 23, 23, 24, 24, 25, 25, 26, 26, 27, 27, 28, 28, 29, 30, 30, 31, 32, 32, 33, 34, 35, 36, 37, 38, 40, 41, 43, 44, 46, 47, 49, 50, 52, 53, 55, 56, 58, 59, 61, 62, 64, 65, 67, 68, 70, 71, 73, 74, 76, 77, 79, 80, 82, 83, 85, 86, 88, 89, 91, 92, 94, 95, 97, 98, 100, 101, 103, 104, 106, 107, 109, 110, 112, 113, 115, 116, 118, 119, 121, 122, 124, 125, 127
+      |            ^~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:115:4: warning: implicit declaration of function 'scan_L_keys' [-Wimplicit-function-declaration]
+  115 |    scan_L_keys();
+      |    ^~~~~~~~~~~
+../Core/Src/main.c:116:4: warning: implicit declaration of function 'scan_R_keys' [-Wimplicit-function-declaration]
+  116 |    scan_R_keys();
+      |    ^~~~~~~~~~~
+arm-none-eabi-gcc -o "hoatzin.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\hr193\OneDrive\Documents\Projects\hoatzin\software\workspace\hoatzin\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="hoatzin.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: hoatzin.elf
+ 
+arm-none-eabi-size   hoatzin.elf 
+arm-none-eabi-objdump -h -S  hoatzin.elf  > "hoatzin.list"
+   text	   data	    bss	    dec	    hex	filename
+  38952	   1276	  12588	  52816	   ce50	hoatzin.elf
+arm-none-eabi-objcopy  -O ihex  hoatzin.elf  "hoatzin.hex"
+arm-none-eabi-objcopy  -O binary  hoatzin.elf  "hoatzin.bin"
+Finished building: default.size.stdout
+ 
+Finished building: hoatzin.hex
+Finished building: hoatzin.bin
+ 
+ 
+Finished building: hoatzin.list
+ 
+
+14:56:23 Build Finished. 0 errors, 5 warnings. (took 2s.14ms)
+

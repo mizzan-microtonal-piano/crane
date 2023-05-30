@@ -25,15 +25,15 @@ void buttonScanInit(){
   pinMode(CRANE_KEY_C0, OUTPUT); 
   pinMode(CRANE_KEY_C1, OUTPUT);    
   pinMode(CRANE_KEY_C2, OUTPUT);   
-  pinMode(CRANE_KEY_R0, INPUT);    
-  pinMode(CRANE_KEY_R1, INPUT);    
-  pinMode(CRANE_KEY_R2, INPUT);    
-  pinMode(CRANE_KEY_R3, INPUT);    
+  pinMode(CRANE_KEY_R0, INPUT_PULLDOWN);    
+  pinMode(CRANE_KEY_R1, INPUT_PULLDOWN);    
+  pinMode(CRANE_KEY_R2, INPUT_PULLDOWN);    
+  pinMode(CRANE_KEY_R3, INPUT_PULLDOWN);    
 
-  digitalWrite(CRANE_KEY_R0,HIGH );
-  digitalWrite(CRANE_KEY_R1,HIGH );
-  digitalWrite(CRANE_KEY_R2,HIGH );
-  digitalWrite(CRANE_KEY_R3,HIGH );
+  //digitalWrite(CRANE_KEY_R0,LOW );
+  //digitalWrite(CRANE_KEY_R1,LOW );
+  //digitalWrite(CRANE_KEY_R2,LOW );
+  //digitalWrite(CRANE_KEY_R3,LOW );
 }
 
 void buttonEdgeScan(){

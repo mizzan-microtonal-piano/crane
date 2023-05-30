@@ -89,7 +89,7 @@ REQUIRED UPDATES
 #define TFT_RST PC_5
 #define TFT_MISO PA_6
 
-SPISettings mySetting(16000000, MSBFIRST , SPI_MODE0);
+//SPISettings mySetting(40000000, MSBFIRST , SPI_MODE0);
 
 // GLOBAL VALIABLES
 // ============================================================
@@ -196,7 +196,7 @@ struct COMMUNICATION communication;
 
 // System Debug Mode: Activating extended serial messages
 // ============================================================
-bool DEBUG = false;
+bool DEBUG = true;
 
 // Screen dimensions
 #define SCREEN_WIDTH  320
@@ -269,6 +269,9 @@ void setup() {
   SerialUSB.begin(115200); //default was 11
   SerialUSB.println("Mizzan Microtonal Piano");
   
+  buttonScanInit();
+
+
   /* WHAT THE FUCK AM I DOING HER?
   //set clkPin,dePin,swPin as INPUT
   pinMode(clkPin, INPUT);
@@ -354,7 +357,7 @@ void setup() {
   // RUN A LOOP UNTIL YOU HEAR FROM PYTHON
   // =====================================
   communication.ping = false;
-  //// communication.booted = true; //true that if you want to test it without the python SERVER
+  communication.booted = true; //true that if you want to test it without the python SERVER
   while (!communication.booted) {
     if(SerialUSB.available() > 0) {
       communication = readSerial(communication=communication);
@@ -429,6 +432,9 @@ void loop() {
     pagesLoaded = false;
     itemsLoaded = false;
   }
+
+ 
+
 
   /*
   // initialize button1
@@ -665,13 +671,16 @@ void buttonHandler(){
 
   //example of a single button pressed (in this case when button 0 is pressed, the serial prints the rise/fall state of the button)
   if(buttonFlag[0] == 1 ){
-    
-    if(buttonEdge[0] == 0 ){
-      if (DEBUG) SerialUSB.println("FALL on 0");
-    }else{
-      if (DEBUG) SerialUSB.println("button 0: dClick");
-      dClick = true;
+    if (DEBUG) {
+      if(buttonEdge[0] == 0 ){
+        SerialUSB.println("FALL on 0");
+      }else{
+        SerialUSB.println("RISE on 0");
+        rotation = rotation - 1;
+        SerialUSB.println(rotation);
+      }
     }
+
     buttonHandle[0] = 1; //clear the flag
   }
 
@@ -687,18 +696,11 @@ void buttonHandler(){
   }
 
   else if(buttonFlag[2] == 1 ){
-
-    rotation = rotation - 1;
-
-    if (DEBUG) {
-      if(buttonEdge[2] == 0 ){
-        SerialUSB.println("FALL on 2");
-      }else{
-        SerialUSB.println("RISE on 2");
-        SerialUSB.println(rotation);
-      }
+    if(buttonEdge[2] == 0 ){
+      if (DEBUG) SerialUSB.println("FALL on 2");
+    }else{
+      if (DEBUG) SerialUSB.println("RISE on 2");
     }
-
     buttonHandle[2] = 1; //clear the flag
   }
 
@@ -713,15 +715,18 @@ void buttonHandler(){
     buttonHandle[3] = 1; //clear the flag
   }
 
+
   else if(buttonFlag[4] == 1 ){
     if(buttonEdge[4] == 0 ){
       if (DEBUG) SerialUSB.println("FALL on 4");
     }else{
-      if (DEBUG) SerialUSB.println("RISE on 4");
+      if (DEBUG) SerialUSB.println("button 4: dClick");
+      dClick = true;
     }
     buttonHandle[4] = 1; //clear the flag
   }
-  
+
+
   else if(buttonFlag[5] == 1 ){
     if(buttonEdge[5] == 0 ){
       if (DEBUG) SerialUSB.println("FALL on 5");
