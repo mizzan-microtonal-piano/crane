@@ -683,9 +683,9 @@ void buttonHandler(){
 
   else if(buttonFlag[1] == 1 ){
       if (buttonEdge[1] == 0 ){
-        SerialUSB.println("FALL on 1");
+        if (DEBUG) SerialUSB.println("FALL on 1");
       } else {
-        SerialUSB.println("RISE on 1");
+        if (DEBUG) SerialUSB.println("RISE on 1");
       }
     buttonHandle[1] = 1; //clear the flag
   }
