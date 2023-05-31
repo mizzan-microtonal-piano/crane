@@ -196,7 +196,7 @@ struct COMMUNICATION communication;
 
 // System Debug Mode: Activating extended serial messages
 // ============================================================
-bool DEBUG = true;
+bool DEBUG = false;
 
 // Screen dimensions
 #define SCREEN_WIDTH  320
@@ -671,27 +671,22 @@ void buttonHandler(){
 
   //example of a single button pressed (in this case when button 0 is pressed, the serial prints the rise/fall state of the button)
   if(buttonFlag[0] == 1 ){
-    if (DEBUG) {
       if(buttonEdge[0] == 0 ){
-        SerialUSB.println("FALL on 0");
+        if (DEBUG) SerialUSB.println("FALL on 0");
       }else{
-        SerialUSB.println("RISE on 0");
+        if (DEBUG) SerialUSB.println("RISE on 0");
         rotation = rotation - 1;
         SerialUSB.println(rotation);
       }
-    }
-
     buttonHandle[0] = 1; //clear the flag
   }
 
   else if(buttonFlag[1] == 1 ){
-    if (DEBUG) {
       if (buttonEdge[1] == 0 ){
         SerialUSB.println("FALL on 1");
       } else {
         SerialUSB.println("RISE on 1");
       }
-    }
     buttonHandle[1] = 1; //clear the flag
   }
 
